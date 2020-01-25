@@ -1,0 +1,21 @@
+#%RAML 1.0
+version: v1
+title: db-demo
+uses:
+  employee: datatypes/empdatatype.raml
+traits:
+  clienttarits: !include traits/trait.raml
+
+/employee:
+  post:
+    is: [clienttarits]
+    body: 
+      application/json:
+        type: employee.employee
+        example:  !include  examples/empexample.json
+    responses:
+      201:
+        body:
+          application/json: 
+            type: employee.employee
+            example:  !include  examples/empexample.json
